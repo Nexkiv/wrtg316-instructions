@@ -1,0 +1,65 @@
+.square-radio-label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+/* Hide the default radio button */
+.square-radio-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create the custom square radio box */
+.square-radio-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border: 2px solid #ccc;
+  border-radius: 3px; /* Slight rounding (use 0 for perfect square) */
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.square-radio-label:hover input ~ .square-radio-box {
+  border-color: #0d6efd;
+}
+
+/* When checked - blue background */
+.square-radio-label input:checked ~ .square-radio-box {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+/* Create the checkmark (hidden when not checked) */
+.square-radio-box:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show checkmark when checked */
+.square-radio-label input:checked ~ .square-radio-box:after {
+  display: block;
+}
+
+/* Style the white checkmark */
+.square-radio-box:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Tetris Tutorial</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./style/square_radio_button.css" />
+    <style>
+      .placeholder-img {
+        width: 100%;
+        max-width: 500px;
+        aspect-ratio: 4/3;
+        background: #e9ecef;
+        color: #bbb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        border-radius: 1rem;
+        border: 2px dashed #ced4da;
+        margin: 0.5em 0 1em 0;
+      }
+      .img {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5em 0 1em 0;
+      }
+      .small-img {
+        width: 100%;
+        max-width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5em 0 1em 0;
+      }
+    </style>
+    <script>
+      function showInstructions(os) {
+        document.getElementById("windows-instructions").classList.add("d-none");
+        document.getElementById("mac-instructions").classList.add("d-none");
+        document
+          .getElementById(os + "-instructions")
+          .classList.remove("d-none");
+        document.getElementById("os-windows-btn").classList.remove("active");
+        document.getElementById("os-mac-btn").classList.remove("active");
+        document.getElementById("os-" + os + "-btn").classList.add("active");
+      }
+      window.onload = () => showInstructions("windows");
+    </script>
+  </head>
+  <body>
+    <div class="container my-5">
+      <h1 class="text-center mb-4">AI Tetris Instructions</h1>
+
+      <h4 class="text-center mb-4">Choose your OS:</h4>
+      <div class="d-flex justify-content-center mb-4">
+        <div class="btn-group" role="group" aria-label="OS Toggle">
+          <button
+            type="button"
+            class="btn btn-success"
+            id="os-windows-btn"
+            onclick="showInstructions('windows')"
+          >
+            Windows
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="os-mac-btn"
+            onclick="showInstructions('mac')"
+          >
+            Mac
+          </button>
+        </div>
+      </div>
+
+      <section class="mb-4">
+        <h2>Introduction</h2>
+        <p>
+          The purpose of these instructions is to teach you how to download an
+          Artificial Agent that plays the game of Tetris using the provided
+          code. Python installation is required, and as such is included in
+          these instructions. These procedures will take about 10-15 minutes to
+          complete.
+        </p>
+      </section>
+      <section class="mb-4">
+        <h2>Disclaimer</h2>
+        <div class="alert alert-warning">
+          We are not responsible for any damage or issues to your computer
+          caused by improper installation of Python or related dependencies.
+        </div>
+      </section>
+
+      <div id="windows-instructions">
+        <section class="mb-4">
+          <h2>Requirements</h2>
+          <ul>
+            <li>A computer with good wifi connection</li>
+            <li>Windows x64</li>
+            <li>
+              2.5 GB available space (300MB for Python, ~2GB for dependencies)
+            </li>
+          </ul>
+        </section>
+
+        <h2 class="text-success mb-3">Part 1: Python Installation (Windows)</h2>
+        <ol>
+          <li>
+            <b>Download Python:</b><br />
+            <ul>
+              <li>
+                <a
+                  href="https://www.python.org/ftp/python/3.12.0/python-3.12.0-amd64.exe"
+                  target="_blank"
+                >
+                  Download Python 3.12 for Windows</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Open Installer:</b>
+            <ul>
+              <li>
+                Press the
+                <b><i class="fa-brands fa-windows"></i> Windows key</b> (open
+                Windows menu)
+              </li>
+              <li>Type <b>File Explorer</b></li>
+              <li>Open File Explorer &rarr; Click <b>Downloads</b></li>
+            </ul>
+            <img src="img/python_file_exporer_win.png" class="img" />
+            <ul>
+              <li>Double-click <i>python-3.12.0-amd64.exe</i></li>
+            </ul>
+            <img src="img/python_downloads_win.png" class="img" />
+          </li>
+          <li>
+            <b>Install Python:</b>
+            <ul>
+              <li>Check "&#9745; Add python.exe to PATH"</li>
+            </ul>
+            <img src="img/python_installer_win.png" class="img" />
+            <ul>
+              <li>
+                Click <span class="badge bg-primary">&rarr; Install Now</span>
+              </li>
+              <li>Select Disable Path Length Limit</li>
+              <li>If prompted, choose to allow changes</li>
+            </ul>
+          </li>
+        </ol>
+        <h2 class="mt-4 mb-3 text-success">
+          Part 2: Install Tetris-AI Repository
+        </h2>
+        <ol start="4">
+          <li>
+            <b>Go to GitHub:</b>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/andrewgunyan/Tetris-AI#"
+                  target="_blank"
+                  >Tetris-AI Repository</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Download ZIP:</b>
+            <ul>
+              <li>
+                Click
+                <span class="badge bg-success">&lt;&gt; Code &#x25BE;</span>,
+                then
+                <span class="badge bg-secondary">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    class="octicon octicon-file-zip"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    display="inline-block"
+                    overflow="visible"
+                    style="vertical-align: text-bottom"
+                  >
+                    <path
+                      d="M3.5 1.75v11.5c0 .09.048.173.126.217a.75.75 0 0 1-.752 1.298A1.748 1.748 0 0 1 2 13.25V1.75C2 .784 2.784 0 3.75 0h5.586c.464 0 .909.185 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 12.25 15h-.5a.75.75 0 0 1 0-1.5h.5a.25.25 0 0 0 .25-.25V4.664a.25.25 0 0 0-.073-.177L9.513 1.573a.25.25 0 0 0-.177-.073H7.25a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5h-3a.25.25 0 0 0-.25.25Zm3.75 8.75h.5c.966 0 1.75.784 1.75 1.75v3a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1-.75-.75v-3c0-.966.784-1.75 1.75-1.75ZM6 5.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 6 5.25Zm.75 2.25h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM8 6.75A.75.75 0 0 1 8.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 8 6.75ZM8.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM8 9.75A.75.75 0 0 1 8.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 8 9.75Zm-1 2.5v2.25h1v-2.25a.25.25 0 0 0-.25-.25h-.5a.25.25 0 0 0-.25.25Z"
+                    ></path>
+                  </svg>
+                  Download ZIP</span
+                >
+              </li>
+            </ul>
+            <img src="img/tetris-AI_repo_win.png" class="img" />
+          </li>
+          <li>
+            <b>Extract Files:</b>
+            <ul>
+              <li>
+                Press the
+                <b><i class="fa-brands fa-windows"></i> Windows key</b> (open
+                Windows menu)
+              </li>
+              <li>Type <b>File Explorer</b></li>
+              <li>Open File Explorer &rarr; Click <b>Downloads</b></li>
+              <li>
+                Right-click on <i>Tetris-AI-Master</i> &rarr; Click
+                <b>Extract All</b>
+              </li>
+              <li>Accept default destination</li>
+            </ul>
+            <img src="img/tetris-AI_extract_win.png" class="img" />
+          </li>
+          <li>
+            <b>Open Command Prompt:</b>
+            <ul>
+              <li>Press <b>Windows key</b> + R</li>
+              <li>Type <b>cmd</b>, press OK</li>
+            </ul>
+            <img src="img/command_cmd_win.png" class="small-img" />
+            <img src="img/command_win.png" class="img" />
+          </li>
+          <li>
+            <b>Navigate to folder:</b>
+            <ul>
+              <li>
+                Type:
+                <code>cd Downloads\Tetris-AI-Master\Tetris-AI-Master</code>
+              </li>
+              <li>Hit enter</li>
+            </ul>
+          </li>
+          <li>
+            <b>Install dependencies:</b>
+            <ul>
+              <li>Type: <code>pip install -r requirements.txt</code></li>
+              <li>Hit enter</li>
+            </ul>
+            <br />
+            <div class="alert alert-primary d-inline-block" role="alert">
+              <b>Note:</b> Multiple dependencies will begin to install. This may
+              take a few minutes. Do not close the window while they are
+              installing.
+            </div>
+          </li>
+          <li>
+            <b>Open Tetris AI GUI:</b>
+            <ul>
+              <li>Type: <code>python main.py</code></li>
+              <li>Hit return</li>
+            </ul>
+          </li>
+        </ol>
+        <h2 class="mt-4 mb-3 text-success">Part 3: Train and Play!</h2>
+        <ol start="12">
+          <li>
+            <b>Train your AI:</b>
+            <ul>
+              <li>Click "Train your AI"</li>
+            </ul>
+            <img src="img/tetris-AI_GUI_win.png" class="img" />
+            <ul>
+              <li>Select level (0-15) in the bottom left box</li>
+              <li>Click "Start training!"</li>
+            </ul>
+            <br />
+            <div class="alert alert-primary d-inline-block" role="alert">
+              <b>Note:</b> 0 means no almost no training, 15 is the highest
+              amount of training.
+            </div>
+            <img src="img/tetris-AI_training_win.png" class="img" />
+            <ul>
+              <li>Press "OK" when "Training complete!" appears</li>
+            </ul>
+            <img src="img/tetris-AI_complete_win.png" class="small-img" />
+          </li>
+          <li>
+            <b>Watch your AI Play:</b>
+            <ul>
+              <li>Click "Watch your AI play"</li>
+              <li>
+                A window appears; watch your AI play Tetris at the trained level
+              </li>
+            </ul>
+            <br />
+            <div class="alert alert-primary d-inline-block" role="alert">
+              <b>Note:</b> This may take a few seconds to load.
+            </div>
+            <img src="img/tetris-AI_gameplay_win.png" class="img" />
+          </li>
+        </ol>
+      </div>
+
+      <div id="mac-instructions" class="d-none">
+        <section class="mb-4">
+          <h2>Requirements</h2>
+          <ul>
+            <li>A computer with good wifi connection</li>
+            <li>Mac OS</li>
+            <li>
+              2.5 GB available space (300MB for Python, ~2GB for dependencies)
+            </li>
+          </ul>
+        </section>
+
+        <h2 class="text-primary mb-3">Part 1: Python Installation (Mac)</h2>
+        <ol>
+          <li>
+            <b>Download Python:</b><br />
+            <ul>
+              <li>
+                <a
+                  href="https://www.python.org/ftp/python/3.12.10/python-3.12.10-macos11.pkg"
+                  target="_blank"
+                  >Download Python 3.12 for Mac</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Open Installer:</b>
+            <ul>
+              <li>
+                Press <b>&#x2318; Command + Space</b> (open Spotlight Search)
+              </li>
+              <li>Type <b>Finder</b></li>
+              <li>Open Finder &rarr; Click <b>Downloads</b></li>
+              <li>Double-click <i>python-3.12.0-macosx.pkg</i></li>
+            </ul>
+            <img src="img/python_downloads_mac.png" class="img" />
+          </li>
+          <li>
+            <b>Install Python:</b>
+            <ul>
+              <li>
+                Click <span class="badge bg-secondary">Continue</span> on the
+                first screens
+              </li>
+            </ul>
+            <img src="img/python_installer_mac.png" class="img" />
+            <ul>
+              <li>
+                When propted, <span class="badge bg-secondary">Agree</span> to
+                terms
+              </li>
+              <li>
+                When propted,
+                <span class="badge bg-secondary">Install</span> and verify
+              </li>
+              <li>
+                When finished, select
+                <span class="badge bg-primary">Close</span>
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <h2 class="mt-4 mb-3 text-primary">
+          Part 2: Install Tetris-AI Repository
+        </h2>
+        <ol start="4">
+          <li>
+            <b>Go to GitHub:</b>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/andrewgunyan/Tetris-AI#"
+                  target="_blank"
+                  >Tetris-AI Repository</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Download ZIP:</b>
+            <ul>
+              <li>
+                Click
+                <span class="badge bg-success">&lt;&gt; Code &#x25BE;</span>,
+                then
+                <span class="badge bg-secondary">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    class="octicon octicon-file-zip"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    display="inline-block"
+                    overflow="visible"
+                    style="vertical-align: text-bottom"
+                  >
+                    <path
+                      d="M3.5 1.75v11.5c0 .09.048.173.126.217a.75.75 0 0 1-.752 1.298A1.748 1.748 0 0 1 2 13.25V1.75C2 .784 2.784 0 3.75 0h5.586c.464 0 .909.185 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 12.25 15h-.5a.75.75 0 0 1 0-1.5h.5a.25.25 0 0 0 .25-.25V4.664a.25.25 0 0 0-.073-.177L9.513 1.573a.25.25 0 0 0-.177-.073H7.25a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5h-3a.25.25 0 0 0-.25.25Zm3.75 8.75h.5c.966 0 1.75.784 1.75 1.75v3a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1-.75-.75v-3c0-.966.784-1.75 1.75-1.75ZM6 5.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 6 5.25Zm.75 2.25h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM8 6.75A.75.75 0 0 1 8.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 8 6.75ZM8.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM8 9.75A.75.75 0 0 1 8.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 8 9.75Zm-1 2.5v2.25h1v-2.25a.25.25 0 0 0-.25-.25h-.5a.25.25 0 0 0-.25.25Z"
+                    ></path>
+                  </svg>
+                  Download ZIP</span
+                >
+              </li>
+            </ul>
+            <img src="img/tetris-AI_repo_mac.png" class="img" />
+          </li>
+          <li>
+            <b>Extract Files:</b>
+            <ul>
+              <li>
+                Press <b>&#x2318; Command + Space</b> (open Spotlight Search)
+              </li>
+              <li>Type <b>Finder</b></li>
+              <li>Open Finder &rarr; Downloads</li>
+              <li>Double-click <i>Tetris-AI-master.zip</i> in Finder</li>
+            </ul>
+            <img src="img/tetris-AI_downloads_mac.png" class="img" />
+          </li>
+          <li>
+            <b>Open Terminal:</b>
+            <ul>
+              <li>Press <b>&#x2318; Command + Space</b></li>
+              <li>Type <b>Terminal</b></li>
+              <li>Open Terminal</li>
+            </ul>
+            <img src="img/terminal_mac.png" class="img" />
+          </li>
+          <li>
+            <b>Navigate to folder:</b>
+            <ul>
+              <li>Type: <code>cd Downloads/Tetris-AI-master/</code></li>
+              <li>Hit return</li>
+            </ul>
+          </li>
+          <li>
+            <b>Install dependencies:</b>
+            <ul>
+              <li>Type: <code>pip install -r requirements.txt</code></li>
+              <li>Hit return</li>
+            </ul>
+            <br />
+            <div class="alert alert-primary d-inline-block" role="alert">
+              <b>Note:</b> Multiple dependencies will begin to install. This may
+              take a few minutes. Do not close the window while they are
+              installing.
+            </div>
+          </li>
+          <li>
+            <b>Open Tetris AI GUI:</b>
+            <ul>
+              <li>Type: <code>python main.py</code></li>
+              <li>Hit return</li>
+            </ul>
+          </li>
+        </ol>
+        <h2 class="mt-4 mb-3 text-primary">Part 3: Train and Play!</h2>
+        <ol start="12">
+          <li>
+            <b>Train your AI:</b>
+            <ul>
+              <li>Click "Train your AI"</li>
+            </ul>
+            <img src="img/tetris-AI_GUI_mac.png" class="img" />
+            <ul>
+              <li>Select level (0-15) in the bottom left box</li>
+              <li>Click "Start training"</li>
+            </ul>
+            <br />
+            <div class="alert alert-primary d-inline-block" role="alert">
+              <b>Note:</b> 0 means no almost no training, 15 is the highest
+              amount of training.
+            </div>
+            <img src="img/tetris-AI_training_mac.png" class="img" />
+            <ul>
+              <li>Press "OK" when "Training complete!" appears</li>
+            </ul>
+            <img src="img/tetris-AI_complete_mac.png" class="small-img" />
+          </li>
+          <li>
+            <b>Watch your AI Play:</b>
+            <ul>
+              <li>Click "Watch your AI play"</li>
+              <li>
+                A window appears; watch your AI play Tetris at the trained level
+              </li>
+            </ul>
+            <br />
+            <div class="alert alert-primary d-inline-block" role="alert">
+              <b>Note:</b> This may take a few seconds to load.
+            </div>
+            <img src="img/tetris-AI_gameplay_mac.png" class="img" />
+          </li>
+        </ol>
+      </div>
+
+      <section class="mb-4">
+        <h2>Conclusion</h2>
+        <p>
+          You now have a Tetris AI program with capabilities to train and play
+          the game of Tetris independently! Have fun training it to different
+          levels and learning from it as you both play this classical game!
+        </p>
+      </section>
+
+      <hr />
+      <p class="text-center text-muted">
+        Created for educational use &middot; Updated October 2025
+      </p>
+    </div>
+  </body>
+</html>
